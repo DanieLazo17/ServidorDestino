@@ -50,7 +50,7 @@
     //
     $app->post('[/]', \UsuarioControlador::class . ":ValidarUsuario");
 
-    $app->group('/Registro.html', function (RouteCollectorProxy $group) {
+    $app->group('[/]', function (RouteCollectorProxy $group) {
         $group->post('/Nombre[/]', \UsuarioControlador::class . ':BuscarNombreDeUsuario' );
         $group->post('/UsuarioNuevo[/]', \UsuarioControlador::class . ':CrearUsuario' );
     });
