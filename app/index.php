@@ -48,7 +48,7 @@
     });
 
     //
-    $app->post('/Acceso[/]', \UsuarioControlador::class . ":ValidarUsuario");
+    $app->post('[/]', \UsuarioControlador::class . ":ValidarUsuario");
 
     $app->group('/Registro', function (RouteCollectorProxy $group) {
         $group->post('/Nombre[/]', \UsuarioControlador::class . ':BuscarNombreDeUsuario' );
