@@ -51,14 +51,9 @@
             $consulta->execute(array($usuario->getNombre(), $usuario->getContrasena()));
         }
 
-        public function compararContrasena($contrasena){
+        public function compararContrasena($contrasenaIngresada){
             
-            if($this->contrasena == $contrasena){
-                return true;
-            }
-            else{
-                return false;
-            }
+            return password_verify($contrasenaIngresada, $this->contrasena);
         }
     }
 

@@ -72,10 +72,11 @@
         public function CrearUsuario(Request $request, Response $response, array $args){
 
             $listaDeParametros = $request->getParsedBody();
+            $hashDeContrasena = password_hash($listaDeParametros['nuevaContra'], PASSWORD_DEFAULT);
 
             $usuario = new Usuario();
             $usuario->setNombre($listaDeParametros['nuevoUsuario']);
-            $usuario->setContrasena($listaDeParametros['nuevaContra']);
+            $usuario->setContrasena($hashDeContrasena);
 
             Usuario::guardarUsuario($usuario);
 
