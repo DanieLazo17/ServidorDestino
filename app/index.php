@@ -53,7 +53,7 @@
     //$app->post('[/]', \UsuarioControlador::class . ":BuscarNombreDeUsuario");
     
     $app->group('/Registro', function (RouteCollectorProxy $gruporeg) {
-        $gruporeg->post('/Nombre[/]', \UsuarioControlador::class . ':BuscarNombreDeUsuario' );
+        $gruporeg->post('[/]', \UsuarioControlador::class . ':BuscarNombreDeUsuario' );
         //$gruporeg->post('/UsuarioNuevo[/]', \UsuarioControlador::class . ':CrearUsuario' );
     });
     
