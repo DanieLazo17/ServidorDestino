@@ -50,13 +50,13 @@
     //
     //$app->post('[/]', \UsuarioControlador::class . ":ValidarUsuario");
 
-    $app->post('[/]', \UsuarioControlador::class . ":BuscarNombreDeUsuario");
-    /*
+    //$app->post('[/]', \UsuarioControlador::class . ":BuscarNombreDeUsuario");
+    
     $app->group('/Registro', function (RouteCollectorProxy $gruporeg) {
         $gruporeg->post('/Nombre[/]', \UsuarioControlador::class . ':BuscarNombreDeUsuario' );
-        $gruporeg->post('/UsuarioNuevo[/]', \UsuarioControlador::class . ':CrearUsuario' );
+        //$gruporeg->post('/UsuarioNuevo[/]', \UsuarioControlador::class . ':CrearUsuario' );
     });
-    */
+    
     //Destino
     
     $app->group('/Destino', function (RouteCollectorProxy $group) {
