@@ -26,6 +26,7 @@
     $app->addErrorMiddleware(true,true,true);
 
     // Habilitar CORS
+    /*
     $app->add(function (Request $request, RequestHandlerInterface $handler): Response {
         // $routeContext = RouteContext::fromRequest($request);
         // $routingResults = $routeContext->getRoutingResults();
@@ -44,7 +45,7 @@
     
         return $response;
     });
-
+    */
     $app->get('[/]', function (Request $request, Response $response, array $args) {
         $response->getBody()->write("Bienvenido");
         return $response;
