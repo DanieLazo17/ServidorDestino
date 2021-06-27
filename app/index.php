@@ -43,14 +43,6 @@
         return $response;
     });
     */
-
-    $app->post('/hello/{name}', function (Request $request, Response $response, array $args) {
-        $name = $args['name'];
-        $response->getBody()->write("Hello, $name");
-        return $response;
-    });
-
-
     $app->get('[/]', function (Request $request, Response $response, array $args) {
         $response->getBody()->write("Bienvenido");
         return $response;
@@ -71,6 +63,12 @@
     $app->group('/Destino', function (RouteCollectorProxy $group) {
         $group->post('/Nuevo[/]', \DestinoControlador::class . ':CrearDestino' );
         $group->get('[/]', \DestinoControlador::class . ':RetornarDestinos' );
+    });
+
+    $app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
+        $name = $args['name'];
+        $response->getBody()->write("Hello, $name");
+        return $response;
     });
 
     $app->run();
