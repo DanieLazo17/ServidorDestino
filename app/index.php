@@ -2,10 +2,10 @@
 
     use Psr\Http\Message\ResponseInterface as Response;
     use Psr\Http\Message\ServerRequestInterface as Request;
-    use Psr\Http\Server\RequestHandlerInterface;
+    //use Psr\Http\Server\RequestHandlerInterface;
     use Slim\Factory\AppFactory;
-    use Slim\Routing\RouteCollectorProxy;
-    use Slim\Routing\RouteContext;
+    //use Slim\Routing\RouteCollectorProxy;
+    //use Slim\Routing\RouteContext;
 
     require __DIR__ . '/../vendor/autoload.php';
 
