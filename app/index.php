@@ -27,9 +27,9 @@
 
     // Habilitar CORS
     $app->add(function (Request $request, RequestHandlerInterface $handler): Response {
-        $routeContext = RouteContext::fromRequest($request);
-        $routingResults = $routeContext->getRoutingResults();
-        $methods = $routingResults->getAllowedMethods();
+        // $routeContext = RouteContext::fromRequest($request);
+        // $routingResults = $routeContext->getRoutingResults();
+        // $methods = $routingResults->getAllowedMethods();
         
         $response = $handler->handle($request);
     
