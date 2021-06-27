@@ -1,12 +1,8 @@
 <?php
 
-    use Psr\Http\Message\ResponseInterface as Response;
-    use Psr\Http\Message\ServerRequestInterface as Request;
-    use Slim\Factory\AppFactory;
-
     class DestinoControlador{
 
-        public function CrearDestino(Request $request, Response $response, array $args){
+        public function CrearDestino($request, $response, $args){
             $listaDeParametros = $request->getParsedBody();
             $nombre = $listaDeParametros['nombre'];
             $tipoTurismo = $listaDeParametros['tipoTurismo'];
@@ -30,7 +26,7 @@
             return $response;
         }
 
-        public function RetornarDestinos(Request $request, Response $response, array $args){
+        public function RetornarDestinos($request, $response, $args){
 
             $arrayDestinos = Destino::obtenerDestinos();
             $response->getBody()->write(json_encode($arrayDestinos));

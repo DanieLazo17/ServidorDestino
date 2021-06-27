@@ -9,13 +9,9 @@
 
     //Funcionalidad
 
-    use Psr\Http\Message\ResponseInterface as Response;
-    use Psr\Http\Message\ServerRequestInterface as Request;
-    use Slim\Factory\AppFactory;
-
     class UsuarioControlador{
 
-        public function ValidarUsuario(Request $request, Response $response, array $args){
+        public function ValidarUsuario($request, $response, $args){
             /*
             $listaDeParametros = $request->getParsedBody();
             $response->getBody()->write( json_encode(Usuario::obtenerUsuario($listaDeParametros['usuario'])) );
@@ -51,7 +47,7 @@
             return $response;
         }
 
-        public function BuscarNombreDeUsuario(Request $request, Response $response, array $args){
+        public function BuscarNombreDeUsuario($request, $response, $args){
 
             $arregloUsuarios = Usuario::obtenerNombresDeUsuarios();
 
@@ -69,7 +65,7 @@
             return $response;
         }
 
-        public function CrearUsuario(Request $request, Response $response, array $args){
+        public function CrearUsuario($request, $response, $args){
 
             $listaDeParametros = $request->getParsedBody();
             $hashDeContrasena = password_hash($listaDeParametros['nuevaContra'], PASSWORD_DEFAULT);
