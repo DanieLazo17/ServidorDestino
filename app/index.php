@@ -1,11 +1,14 @@
 <?php
 
+    error_reporting(-1);
+    ini_set('display_errors', 1);
+
     use Psr\Http\Message\ResponseInterface as Response;
     use Psr\Http\Message\ServerRequestInterface as Request;
-    //use Psr\Http\Server\RequestHandlerInterface;
+    use Psr\Http\Server\RequestHandlerInterface;
     use Slim\Factory\AppFactory;
-    //use Slim\Routing\RouteCollectorProxy;
-    //use Slim\Routing\RouteContext;
+    use Slim\Routing\RouteCollectorProxy;
+    use Slim\Routing\RouteContext;
 
     require __DIR__ . '/../vendor/autoload.php';
 
@@ -23,11 +26,10 @@
     $app->addErrorMiddleware(true,true,true);
 
     // Habilitar CORS
-    /*
     $app->add(function (Request $request, RequestHandlerInterface $handler): Response {
-        // $routeContext = RouteContext::fromRequest($request);
-        // $routingResults = $routeContext->getRoutingResults();
-        // $methods = $routingResults->getAllowedMethods();
+        $routeContext = RouteContext::fromRequest($request);
+        $routingResults = $routeContext->getRoutingResults();
+        $methods = $routingResults->getAllowedMethods();
         
         $response = $handler->handle($request);
     
@@ -42,7 +44,7 @@
     
         return $response;
     });
-    */
+
     $app->get('[/]', function (Request $request, Response $response, array $args) {
         $response->getBody()->write("Bienvenido");
         return $response;
@@ -65,7 +67,7 @@
         $group->get('[/]', \DestinoControlador::class . ':RetornarDestinos' );
     });
 
-    $app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
+    $app->post('/hello/{name}', function (Request $request, Response $response, array $args) {
         $name = $args['name'];
         $response->getBody()->write("Hello, $name");
         return $response;
