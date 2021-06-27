@@ -56,7 +56,7 @@
     //
     //$app->post('[/]', \UsuarioControlador::class . ":ValidarUsuario");
 
-    $app->post('/Registro[/]', \UsuarioControlador::class . ":BuscarNombreDeUsuario");
+    $app->post('/registro', \UsuarioControlador::class . ":BuscarNombreDeUsuario");
     /*
     $app->group("/Registro", function (RouteCollectorProxy $gruporeg) {
         $gruporeg->post("[/]", \UsuarioControlador::class . ':BuscarNombreDeUsuario' );
