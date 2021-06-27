@@ -25,6 +25,9 @@
     //Interceptar paquete entrante
     $app->addErrorMiddleware(true,true,true);
 
+    // Add Routing Middleware
+    $app->addRoutingMiddleware();
+
     // Habilitar CORS
     $app->add(function (Request $request, RequestHandlerInterface $handler): Response {
         // $routeContext = RouteContext::fromRequest($request);
