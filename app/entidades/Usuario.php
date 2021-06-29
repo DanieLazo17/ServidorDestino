@@ -45,10 +45,10 @@
             return $consulta->fetchAll();
         }
 
-        public static function guardarUsuario($usuario){
+        public function guardarUsuario(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuario(nombre, contrasena) VALUES (?,?)");
-            $consulta->execute(array($usuario->getNombre(), $usuario->getContrasena()));
+            $consulta->execute(array($usuario->nombre, $usuario->contrasena));
         }
 
         public function compararContrasena($contrasenaIngresada){

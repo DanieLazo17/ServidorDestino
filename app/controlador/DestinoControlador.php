@@ -19,7 +19,7 @@
             $destino->setPais($pais);
             $destino->setProvincia($provincia);
 
-            Destino::guardarDestino($destino);
+            $destino->guardarDestino();
 
             $response->getBody()->write( json_encode($destino) );
 

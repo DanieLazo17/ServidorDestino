@@ -54,10 +54,10 @@
             return $this->provincia;
         }
 
-        public static function guardarDestino($destino){
+        public function guardarDestino(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO destino(nombre, tipoTurismo, pais, provincia) VALUES (?,?,?,?)");
-            $consulta->execute(array($destino->getNombre(), $destino->getTipoTurismo(), $destino->getPais(), $destino->getProvincia()));
+            $consulta->execute(array($destino->nombre, $destino->tipoTurismo, $destino->pais, $destino->provincia));
         }
 
         public static function obtenerDestinos(){
