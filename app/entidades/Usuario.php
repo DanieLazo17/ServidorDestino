@@ -48,7 +48,7 @@
         public function guardarUsuario(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuario(nombre, contrasena) VALUES (?,?)");
-            $consulta->execute(array($usuario->nombre, $usuario->contrasena));
+            $consulta->execute(array($this->nombre, $this->contrasena));
         }
 
         public function compararContrasena($contrasenaIngresada){
