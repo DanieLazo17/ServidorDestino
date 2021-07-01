@@ -16,8 +16,10 @@
     require __DIR__ . '/funciones/funciones.php';
     require __DIR__ . '/entidades/Usuario.php';
     require __DIR__ . '/entidades/Destino.php';
+    require __DIR__ . '/entidades/Mensaje.php';
     require __DIR__ . '/controlador/UsuarioControlador.php';
     require __DIR__ . '/controlador/DestinoControlador.php';
+    require __DIR__ . '/controlador/MensajeControlador.php';
 
     //Crear un objeto
     $app = AppFactory::create();
@@ -50,21 +52,27 @@
         return $response;
     });
 
-    //
+    //Registro
     $app->post('[/]', \UsuarioControlador::class . ":ValidarUsuario");
 
-    //$app->post('[/]', \UsuarioControlador::class . ":BuscarNombreDeUsuario");
-    
-    $app->group("/Registro", function (RouteCollectorProxy $gruporeg) {
-        $gruporeg->post("[/]", \UsuarioControlador::class . ':BuscarNombreDeUsuario' );
-        $gruporeg->post('/UsuarioNuevo[/]', \UsuarioControlador::class . ':CrearUsuario' );
+    //Registración
+    $app->group("/Registro", function (RouteCollectorProxy $grupoRegistro) {
+        $grupoRegistro->post("[/]", \UsuarioControlador::class . ':BuscarNombreDeUsuario' );
+        $grupoRegistro->post('/UsuarioNuevo[/]', \UsuarioControlador::class . ':CrearUsuario' );
     });
     
     //Destino
-    
-    $app->group('/Destino', function (RouteCollectorProxy $group) {
-        $group->post('/Nuevo[/]', \DestinoControlador::class . ':CrearDestino' );
-        $group->get('[/]', \DestinoControlador::class . ':RetornarDestinos' );
+    $app->group('/Destino', function (RouteCollectorProxy $grupoDestino) {
+        $grupoDestino->post('/Nuevo[/]', \DestinoControlador::class . ':CrearDestino' );
+        $grupoDestino->get('[/]', \DestinoControlador::class . ':RetornarDestinos' );
+    });
+
+    //Mensaje
+    $app->group('/Mensaje', function (RouteCollectorProxy $grupoMensaje) {
+        $grupoMensaje->post('[/]', \MensajeControlador::class . ':CrearMensaje' );
+        $grupoMensaje->get('[/]', \MensajeControlador::class . ':RetornarMensajes' );
+        $grupoMensaje->patch('[/]', \MensajeControlador::class . ':ActualizarMensaje' );
+        $grupoMensaje->delete('[/]', \MensajeControlador::class . ':BorrarMensaje' );
     });
 
     $app->post('/hello/{name}', function (Request $request, Response $response, array $args) {

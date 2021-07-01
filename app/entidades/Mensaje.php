@@ -40,7 +40,25 @@
             return $this->contenido;
         }
 
+        public function guardarMensaje(){
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO mensaje(destino, usuario, contenido) VALUES (?,?,?)");
+            $consulta->execute(array($this->destino, $this->usuario, $this->contenido));
+        }
 
+        public function modificarMensaje(){
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            $consulta = $objAccesoDatos->prepararConsulta("UPDATE mensaje SET contenido = ? WHERE destino = ? AND usuario = ?");
+            $consulta->execute(array($this->contenido, $this->destino, $this->usuario));
+        }
+
+        public static function obtenerMensajes(){
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM mensaje");
+            $consulta->execute();
+    
+            return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mensaje');
+        }
         
     }
 ?>
