@@ -45,6 +45,17 @@
 
             return $response;
         }
+
+        public function BorrarMensaje($request, $response, $args){
+
+            $destino = $args['destino'];
+
+            Mensaje::borrarMensajes($destino);
+
+            $response->getBody()->write("borrado");
+   
+            return $response;
+        }
         
     }
 

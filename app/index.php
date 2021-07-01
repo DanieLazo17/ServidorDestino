@@ -72,7 +72,7 @@
         $grupoMensaje->post('[/]', \MensajeControlador::class . ':CrearMensaje' );
         $grupoMensaje->get('[/]', \MensajeControlador::class . ':RetornarMensajes' );
         $grupoMensaje->patch('[/]', \MensajeControlador::class . ':ActualizarMensaje' );
-        $grupoMensaje->delete('[/]', \MensajeControlador::class . ':BorrarMensaje' );
+        $grupoMensaje->delete('/Borrar/{destino}', \MensajeControlador::class . ':BorrarMensaje' );
     });
 
     $app->post('/hello/{name}', function (Request $request, Response $response, array $args) {

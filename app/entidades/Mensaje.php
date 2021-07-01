@@ -52,6 +52,12 @@
             $consulta->execute(array($this->contenido, $this->destino, $this->usuario));
         }
 
+        public function borrarMensaje($destino){
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            $consulta = $objAccesoDatos->prepararConsulta("DELETE FROM mensaje WHERE destino = ?");
+            $consulta->execute(array($destino));
+        }
+
         public static function obtenerMensajes(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM mensaje");
