@@ -50,7 +50,7 @@
 
             $destino = $args['destino'];
 
-            Mensaje::borrarMensajes($destino);
+            Mensaje::borrarMensaje($destino);
 
             $response->getBody()->write("borrado");
    
