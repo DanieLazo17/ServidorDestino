@@ -56,7 +56,7 @@
             $resultado = in_array($listaDeParametros['usuarioNuevo'], array_column($arregloUsuarios, 'nombre'));
 
             if($resultado){
-                $response->getBody()->write("Nombre de usuario no disponible");
+                $response->getBody()->write("Nombre de usuario duplicado");
             }
             else{
                 $response->getBody()->write("Nombre de usuario correcto");
