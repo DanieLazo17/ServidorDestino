@@ -7,7 +7,7 @@
 
         private function __construct(){
             try {
-                $this->objetoPDO = new PDO('mysql:host=remotemysql.com:3306;dbname=dtgcfbqrkH;charset=utf8', 'dtgcfbqrkH', 'loNyJ4cWPc', array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+                $this->objetoPDO = new PDO('mysql:host=remotemysql.com:3306;dbname='.getenv("Database").';charset=utf8', getenv("Usuario"), getenv("Pass"), array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
                 $this->objetoPDO->exec("SET CHARACTER SET utf8");
             } catch (PDOException $e) {
                 print "Error: " . $e->getMessage();
