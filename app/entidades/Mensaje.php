@@ -51,7 +51,7 @@
             $consulta = $objAccesoDatos->prepararConsulta("UPDATE mensaje SET contenido = ? WHERE destino = ? AND usuario = ?");
             $consulta->execute(array($this->contenido, $this->destino, $this->usuario));
         }
-
+        //Modificar métodos estáticos
         public static function borrarMensaje($destino){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("DELETE FROM mensaje WHERE destino = ?");
