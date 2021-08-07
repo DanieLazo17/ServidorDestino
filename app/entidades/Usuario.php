@@ -53,7 +53,7 @@
 
         public function compararContrasena($contrasenaIngresada){
             
-            return password_verify($contrasenaIngresada, $this->contrasena);
+            return password_verify($contrasenaIngresada, $this->getContrasena());
         }
     }
 
