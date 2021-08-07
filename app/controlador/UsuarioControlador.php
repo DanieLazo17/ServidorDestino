@@ -21,7 +21,9 @@
             $listaDeParametros = $request->getParsedBody();
 
             $arregloUsuario = Usuario::obtenerUsuario($listaDeParametros['nombre']);
-            var_dump($arregloUsuario);
+            
+            $response->getBody()->write(var_dump($arregloUsuario));
+            return $response;
             
             if( count($arregloUsuario) == 1 ){
                 
