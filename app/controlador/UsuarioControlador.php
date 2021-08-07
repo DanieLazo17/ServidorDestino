@@ -22,7 +22,7 @@
 
             $arregloUsuario = Usuario::obtenerUsuario($listaDeParametros['nombre']);
             
-            $response->getBody()->write(var_dump($arregloUsuario));
+            $response->getBody()->write(json_encode(var_dump($arregloUsuario)));
             return $response;
             
             if( count($arregloUsuario) == 1 ){
