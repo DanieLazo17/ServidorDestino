@@ -29,7 +29,7 @@
                 foreach($arregloUsuario as $objetoUsuario){
 
                     foreach ($objetoUsuario as $atr => $valueAtr) {
-                        $usuarioDB->set{$atr}($valueAtr);
+                        $usuarioDB->{$atr} = $valueAtr;
                     }
                 }
                 
