@@ -2,8 +2,8 @@
 
     class Usuario{
         
-        public $nombre;
-        public $contrasena;
+        private $nombre;
+        private $contrasena;
 
         public function __construct(){
             

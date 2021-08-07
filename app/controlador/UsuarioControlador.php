@@ -31,12 +31,12 @@
 
                     foreach ($objetoUsuario as $atr => $valueAtr) {
 
-                        $usuarioDB->{$atr} = $valueAtr;
-                        /*
+                        //$usuarioDB->{$atr} = $valueAtr;
+                        
                         $es = $es . ucfirst($atr);
-                        $usuarioDB->$es($valueAtr);
+                        $usuarioDB->{$es}($valueAtr);
                         $es = "set";
-                        */
+                        
                     }
                 }
                 
