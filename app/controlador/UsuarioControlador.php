@@ -25,15 +25,15 @@
             if( count($arregloUsuario) == 1 ){
                 
                 $usuarioDB = new Usuario();
-                $ini = "set";
+                $es = "set";
 
                 foreach($arregloUsuario as $objetoUsuario){
 
                     foreach ($objetoUsuario as $atr => $valueAtr) {
 
-                        $ini = $ini . ucfirst($atr);
-                        $usuarioDB->$ini($valueAtr);
-                        $ini = "set";
+                        $es = $es . ucfirst($atr);
+                        $usuarioDB->$es($valueAtr);
+                        $es = "set";
                     }
                 }
                 
