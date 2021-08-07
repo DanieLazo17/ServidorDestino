@@ -31,7 +31,8 @@
 
                     foreach ($objetoUsuario as $atr => $valueAtr) {
 
-                        $usuarioDB->$setter.ucfirst($atr)($valueAtr);
+                        $setter = $setter . ucfirst($atr);
+                        $usuarioDB->$setter($valueAtr);
                     }
                 }
                 
