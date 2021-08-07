@@ -22,9 +22,6 @@
 
             $arregloUsuario = Usuario::obtenerUsuario($listaDeParametros['nombre']);
             
-            $response->getBody()->write(json_encode(var_dump($arregloUsuario)));
-            return $response;
-            
             if( count($arregloUsuario) == 1 ){
                 
                 $usuarioDB = new Usuario();
