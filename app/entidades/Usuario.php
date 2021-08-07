@@ -34,8 +34,7 @@
             $consulta = $objAccesoDatos->prepararConsulta("SELECT nombre, contrasena FROM usuario WHERE nombre=?");
             $consulta->execute(array($nombre));
     
-            //return $consulta->fetchAll(PDO::FETCH_CLASS, 'Usuario');
-            return $consulta->fetch(PDO::FETCH_ASSOC);
+            return $consulta->fetchAll(PDO::FETCH_CLASS, 'Usuario');
         }
 
         public static function obtenerNombresDeUsuarios(){
