@@ -25,11 +25,12 @@
             if( count($arregloUsuario) == 1 ){
                 
                 $usuarioDB = new Usuario();
+                $inicio = "set";
 
                 foreach($arregloUsuario as $objetoUsuario){
 
                     foreach ($objetoUsuario as $atr => $valueAtr) {
-                        $usuarioDB->{$atr} = $valueAtr;
+                        $usuarioDB->$inicio.ucfirst($atr)($valueAtr);
                     }
                 }
                 
