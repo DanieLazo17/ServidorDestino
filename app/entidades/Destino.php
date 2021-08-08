@@ -1,6 +1,7 @@
 <?php
     class Destino {
   
+        public $idDestino;
         public $nombre;
         public $tipoTurismo;
         public $pais;
@@ -12,6 +13,11 @@
 
         public function __construct(){
             
+        }
+
+        public function setIdDestino($idDestino){
+            
+            $this->idDestino = $idDestino;
         }
 
         public function setNombre($nombre){
@@ -37,6 +43,11 @@
         public function getNombre(){
             
             return $this->nombre;
+        }
+
+        public function getIdDestino(){
+            
+            return $this->idDestino;
         }
 
         public function getTipoTurismo(){
