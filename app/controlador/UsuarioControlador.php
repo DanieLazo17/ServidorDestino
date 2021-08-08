@@ -41,7 +41,7 @@
                 }
 
                 if($usuarioDB->compararContrasena($listaDeParametros['contrasena'])){
-                    $response->getBody()->write("Acceso correcto");
+                    $response->getBody()->write("perfil.html");
                 }
                 else{
                     $response->getBody()->write("Contraseña incorrecta");
