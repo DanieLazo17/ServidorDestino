@@ -1,7 +1,6 @@
 <?php
 
     function iniciarSesion($nombreUsuario){
-        session_start();
 
         $_SESSION['admin'] = $nombreUsuario;
 
