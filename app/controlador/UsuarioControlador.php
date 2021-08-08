@@ -41,7 +41,8 @@
                 }
 
                 if($usuarioDB->compararContrasena($listaDeParametros['contrasena'])){
-                    $response->getBody()->write("perfil.html");
+                    
+                    $response->getBody()->write(iniciarSesion($usuarioDB->getNombre()));
                 }
                 else{
                     $response->getBody()->write("Contraseña incorrecta");

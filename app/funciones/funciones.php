@@ -1,5 +1,15 @@
 <?php
 
+    function iniciarSesion($nombreUsuario){
+        session_start();
+
+        $_SESSION['usuario'] = $nombreUsuario;
+
+        if( isset($_SESSION['usuario'])){
+            return 'perfil.html';
+        }
+    }
+
     function mostrarValor($parametro="Prueba"){
         echo "<br>";
         echo $parametro;
