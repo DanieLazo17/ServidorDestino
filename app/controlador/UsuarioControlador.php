@@ -40,8 +40,8 @@
                     }
                 }
                 
-                $response->getBody()->write(json_encode(var_dump($usuarioDB)));
-                return $response;
+                //$response->getBody()->write(json_encode(var_dump($usuarioDB)));
+                //return $response;
 
                 if($usuarioDB->compararContrasena($listaDeParametros['contrasena'])){
                     $response->getBody()->write("Acceso correcto");
