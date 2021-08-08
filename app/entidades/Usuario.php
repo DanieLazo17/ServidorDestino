@@ -2,10 +2,10 @@
 
     class Usuario{
         
-        public $nombre;
-        public $contrasena;
+        private $nombre;
+        private $contrasena;
 
-        public function __construct(){
+        function __construct(){
             
         }
 
@@ -53,7 +53,7 @@
 
         public function compararContrasena($contrasenaIngresada){
             
-            return password_verify($contrasenaIngresada, $this->getContrasena());
+            return password_verify($contrasenaIngresada, getContrasena());
         }
     }
 
