@@ -3,9 +3,9 @@
     function iniciarSesion($nombreUsuario){
         session_start();
 
-        $_SESSION['usuario'] = $nombreUsuario;
+        $_SESSION['admin'] = $nombreUsuario;
 
-        if( isset($_SESSION['usuario'])){
+        if( isset($_SESSION['admin'])){
             return 'perfil.php';
         }
     }
