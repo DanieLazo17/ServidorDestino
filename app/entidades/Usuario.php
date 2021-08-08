@@ -9,22 +9,22 @@
             
         }
 
-        public function setNombre($nombre){
+        function setNombre($nombre){
             
             $this->nombre = $nombre;
         }
 
-        public function setContrasena($contrasena){
+        function setContrasena($contrasena){
             
             $this->contrasena = $contrasena;
         }
 
-        public function getNombre(){
+        function getNombre(){
             
             return $this->nombre;
         }
 
-        public function getContrasena(){
+        function getContrasena(){
             
             return $this->contrasena;
         }
