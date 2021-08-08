@@ -42,7 +42,7 @@
 
                 if($usuarioDB->compararContrasena($listaDeParametros['contrasena'])){
                     
-                    $response->getBody()->write(iniciarSesion($usuarioDB->getNombre()));
+                    $response->getBody()->write(iniciarSesion($listaDeParametros['nombre']));
                 }
                 else{
                     $response->getBody()->write("Contraseña incorrecta");
