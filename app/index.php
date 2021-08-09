@@ -70,7 +70,7 @@
     //Mensaje
     $app->group('/Mensaje', function (RouteCollectorProxy $grupoMensaje) {
         $grupoMensaje->post('[/]', \MensajeControlador::class . ':CrearMensaje' );
-        $grupoMensaje->get('/{idDestino}[/]', \MensajeControlador::class . ':RetornarMensajes' );
+        $grupoMensaje->get('/{idDestino}[/]', \MensajeControlador::class . ':RetornarMensajesDeDestino' );
         $grupoMensaje->get('[/]', \MensajeControlador::class . ':RetornarMensajes' );
         $grupoMensaje->patch('[/]', \MensajeControlador::class . ':ActualizarMensaje' );
         $grupoMensaje->delete('/Borrar/{destino}', \MensajeControlador::class . ':BorrarMensaje' );

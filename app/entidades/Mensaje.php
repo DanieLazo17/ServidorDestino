@@ -51,7 +51,7 @@
             $consulta = $objAccesoDatos->prepararConsulta("UPDATE mensaje SET contenido = ? WHERE destino = ? AND usuario = ?");
             $consulta->execute(array($this->contenido, $this->destino, $this->usuario));
         }
-        //Modificar métodos estáticos
+        //Modificar métodos estáticos y revisar campo destino en base de datos
         public static function borrarMensaje($destino){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("DELETE FROM mensaje WHERE destino = ?");
@@ -62,6 +62,15 @@
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM mensaje");
             $consulta->execute();
+    
+            return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mensaje');
+        }
+
+        public static function obtenerMensajesDeDestino($idDestino){
+
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM mensaje WHERE destino = ?");
+            $consulta->execute(array($idDestino));
     
             return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mensaje');
         }

@@ -20,6 +20,16 @@
             return $response;
         }
 
+        public function RetornarMensajesDeDestino($request, $response, $args){
+
+            $idDestino = $args['idDestino'];
+
+            $arrayMensajes = Mensaje::obtenerMensajesDeDestino($idDestino);
+            $response->getBody()->write(json_encode($arrayMensajes));
+   
+            return $response->withHeader('Content-Type', 'application/json');
+        }
+
         public function RetornarMensajes($request, $response, $args){
 
             $arrayMensajes = Mensaje::obtenerMensajes();
