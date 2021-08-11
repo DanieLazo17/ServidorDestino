@@ -1,6 +1,7 @@
 <?php
     class Mensaje{
 
+        private $idMensaje;
         private $destino;
         private $usuario;
         private $contenido;
@@ -8,6 +9,11 @@
 
         public function __construct(){
             
+        }
+
+        public function setIdMensaje($idMensaje){
+            
+            $this->idMensaje = $idMensaje;
         }
 
         public function setDestino($destino){
@@ -23,6 +29,11 @@
         public function setContenido($contenido){
             
             $this->contenido = $contenido;
+        }
+
+        public function getIdMensaje(){
+            
+            return $this->idMensaje;
         }
 
         public function getDestino(){
@@ -63,7 +74,8 @@
             $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM mensaje");
             $consulta->execute();
     
-            return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mensaje');
+            /*return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mensaje');*/
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public static function obtenerMensajesDeDestino($idDestino){
@@ -72,7 +84,8 @@
             $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM mensaje WHERE destino = ?");
             $consulta->execute(array($idDestino));
     
-            return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mensaje');
+            /*return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mensaje');*/
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
         
     }
