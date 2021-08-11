@@ -28,8 +28,8 @@
 
         public function RetornarDestinos($request, $response, $args){
 
-            $arrayDestinos = Destino::obtenerDestinos();
-            $response->getBody()->write(json_encode($arrayDestinos));
+            $arregloDeDestinos = Destino::obtenerDestinos();
+            $response->getBody()->write(json_encode($arregloDeDestinos));
    
             return $response->withHeader('Content-Type', 'application/json');
         }

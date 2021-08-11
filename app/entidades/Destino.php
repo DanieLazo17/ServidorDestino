@@ -1,15 +1,15 @@
 <?php
     class Destino {
   
-        public $idDestino;
-        public $nombre;
-        public $tipoTurismo;
-        public $pais;
-        public $provincia;
-        public $tipoAlojamiento;
-        public $tipoComida;
-        public $comunidad;
-        public $imagenPath;
+        private $idDestino;
+        private $nombre;
+        private $tipoTurismo;
+        private $pais;
+        private $provincia;
+        private $tipoAlojamiento;
+        private $tipoComida;
+        private $comunidad;
+        private $imagenPath;
 
         public function __construct(){
             
@@ -75,8 +75,24 @@
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM destino");
             $consulta->execute();
-    
-            return $consulta->fetchAll(PDO::FETCH_CLASS, 'Destino');
+            $arregloDeDestinosEncapsulados = $consulta->fetchAll(PDO::FETCH_CLASS, 'Destino');
+
+            $arregloDeDestinos = array();
+            $es = "set";
+
+            foreach($arregloDeDestinosEncapsulados as $objetoDeDestino){
+
+                $objetoDestinoTemp = new Destino();
+
+                foreach($objetoDeDestino as $atr => $valueAtr){
+                    $es = $es . ucfirst($atr);
+                    $objetoDestinoTemp->{$es}($valueAtr);
+                    $es = "set";
+                }
+                array_push($arregloDeDestinos, $objetoDestinoTemp);
+            }
+
+            return $arregloDeDestinos;
         }
     }
 ?>
