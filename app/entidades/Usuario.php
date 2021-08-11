@@ -33,7 +33,7 @@
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("SELECT nombre, contrasena FROM usuario WHERE nombre=?");
             $consulta->execute(array($nombre));
-            $consulta->setFetchMode(PDO::FETCH_CLASS, 'Usuario');
+            //$consulta->setFetchMode(PDO::FETCH_CLASS, 'Usuario');
     
             return $consulta->fetch();
         }
