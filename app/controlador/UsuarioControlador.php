@@ -21,7 +21,21 @@
             $listaDeParametros = $request->getParsedBody();
 
             $arregloUsuario = Usuario::obtenerUsuario($listaDeParametros['nombre']);
-            
+
+            if(!$arregloUsuario){
+                echo 'No existe usuario';
+                die();
+            }
+    
+            //var_dump($arregloUsuario);
+    
+            if($arregloUsuario->compararContrasena($listaDeParametros['contrasena'])){
+                echo "Acceso correcto";
+            }
+            else{
+                echo "Contraseña incorrecta";
+            }
+            /*
             if( count($arregloUsuario) == 1 ){
                 
                 $usuarioDB = new Usuario();
@@ -51,7 +65,7 @@
             else{
                 $response->getBody()->write("Usuario incorrecto");
             }
-            
+            */
             return $response;
         }
 
