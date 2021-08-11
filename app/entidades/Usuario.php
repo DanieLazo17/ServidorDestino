@@ -2,8 +2,8 @@
 
     class Usuario{
         
-        public $nombre;
-        public $contrasena;
+        private $nombre;
+        private $contrasena;
 
         function __construct(){
             
@@ -33,8 +33,9 @@
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("SELECT nombre, contrasena FROM usuario WHERE nombre=?");
             $consulta->execute(array($nombre));
-            //$consulta->setFetchMode(PDO::FETCH_CLASS, 'Usuario');
+            $consulta->setFetchMode(PDO::FETCH_CLASS, 'Usuario');
     
+            //return $consulta->fetchAll(PDO::FETCH_CLASS, 'Usuario');
             return $consulta->fetch();
         }
 
