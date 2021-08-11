@@ -1,15 +1,15 @@
 <?php
     class Destino {
   
-        public $idDestino;
-        public $nombre;
-        public $tipoTurismo;
-        public $pais;
-        public $provincia;
-        public $tipoAlojamiento;
-        public $tipoComida;
-        public $comunidad;
-        public $imagenPath;
+        private $idDestino;
+        private $nombre;
+        private $tipoTurismo;
+        private $pais;
+        private $provincia;
+        private $tipoAlojamiento;
+        private $tipoComida;
+        private $comunidad;
+        private $imagenPath;
 
         public function __construct(){
             
