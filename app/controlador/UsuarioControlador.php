@@ -12,11 +12,6 @@
     class UsuarioControlador{
 
         public function ValidarUsuario($request, $response, $args){
-            /*
-            $listaDeParametros = $request->getParsedBody();
-            $response->getBody()->write( json_encode(Usuario::obtenerUsuario($listaDeParametros['usuario'])) );
-            return $response;
-            */
             
             $listaDeParametros = $request->getParsedBody();
 
@@ -27,45 +22,13 @@
                 return $response;
             }
     
-            //var_dump($arregloUsuario);
-    
             if($arregloUsuario->compararContrasena($listaDeParametros['contrasena'])){
                 $response->getBody()->write("Acceso correcto");
             }
             else{
                 $response->getBody()->write("Contraseña incorrecta");
             }
-            /*
-            if( count($arregloUsuario) == 1 ){
-                
-                $usuarioDB = new Usuario();
-                $es = "set";
 
-                foreach($arregloUsuario as $objetoUsuario){
-
-                    foreach ($objetoUsuario as $atr => $valueAtr) {
-
-                        //$usuarioDB->{$atr} = $valueAtr;
-                        
-                        $es = $es . ucfirst($atr);
-                        $usuarioDB->{$es}($valueAtr);
-                        $es = "set";
-                        
-                    }
-                }
-
-                if($usuarioDB->compararContrasena($listaDeParametros['contrasena'])){
-                    
-                    $response->getBody()->write("perfil.php");
-                }
-                else{
-                    $response->getBody()->write("Contraseña incorrecta");
-                }
-            }
-            else{
-                $response->getBody()->write("Usuario incorrecto");
-            }
-            */
             return $response;
         }
 
