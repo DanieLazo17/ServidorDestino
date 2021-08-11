@@ -23,7 +23,8 @@
             $arregloUsuario = Usuario::obtenerUsuario($listaDeParametros['nombre']);
 
             if(!$arregloUsuario){
-                echo 'No existe usuario';
+                $response->getBody()->write("No existe usuario");
+                return $response;
                 die();
             }
     
