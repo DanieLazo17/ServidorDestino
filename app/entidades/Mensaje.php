@@ -1,9 +1,9 @@
 <?php
     class Mensaje{
 
-        public $destino;
-        public $usuario;
-        public $contenido;
+        private $destino;
+        private $usuario;
+        private $contenido;
 
 
         public function __construct(){
