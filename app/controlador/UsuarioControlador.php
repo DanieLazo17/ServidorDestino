@@ -20,8 +20,19 @@
                 $response->getBody()->write("No existe usuario");
                 return $response;
             }
+
+            $usuarioDB = new Usuario();
+            $es = "set";
+
+            foreach ($arregloUsuario as $atr => $valueAtr) {
+                        
+                $es = $es . ucfirst($atr);
+                $usuarioDB->{$es}($valueAtr);
+                $es = "set";
+                        
+            }
     
-            if($arregloUsuario->compararContrasena($listaDeParametros['contrasena'])){
+            if($usuarioDB->compararContrasena($listaDeParametros['contrasena'])){
                 $response->getBody()->write("Acceso correcto");
             }
             else{
