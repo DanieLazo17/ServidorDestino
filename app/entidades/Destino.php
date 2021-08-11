@@ -117,7 +117,7 @@
             $consulta->execute();
             //$arregloDeDestinosEncapsulados = $consulta->fetchAll(PDO::FETCH_CLASS, 'Destino');
             $arregloDeDestinosEncapsulados = $consulta->fetchAll(PDO::FETCH_ASSOC);
-
+            /*
             $arregloDeDestinos = array();
             $es = "set";
 
@@ -132,7 +132,7 @@
                 }
                 array_push($arregloDeDestinos, $objetoDestinoTemp);
             }
-
+            */
             return $arregloDeDestinos;
         }
     }
