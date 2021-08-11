@@ -115,9 +115,9 @@
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM destino");
             $consulta->execute();
-            $arregloDeDestinosBaseDatos = $consulta->fetchAll(PDO::FETCH_CLASS, 'Destino');
-            //$arregloDeDestinos = $consulta->fetchAll(PDO::FETCH_ASSOC);
-            
+            //$arregloDeDestinosBaseDatos = $consulta->fetchAll(PDO::FETCH_CLASS, 'Destino');
+            $arregloDeDestinos = $consulta->fetchAll(PDO::FETCH_ASSOC);
+            /*
             $arregloDeDestinos = array();
             $es = "set";
 
@@ -132,7 +132,7 @@
                 }
                 array_push($arregloDeDestinos, $objetoDestinoTemp);
             }
-            
+            */
             return $arregloDeDestinos;
         }
     }
