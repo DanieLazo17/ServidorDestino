@@ -40,16 +40,16 @@
 
         public function ActualizarMensaje($request, $response, $args){
             $listaDeParametros = $request->getParsedBody();
+            $idMensaje = $args['idMensaje'];
+
             $destino = $listaDeParametros['destino'];
-            $usuario = $listaDeParametros['usuario'];
             $contenido = $listaDeParametros['contenido'];
 
             $mensaje = new Mensaje();
             $mensaje->setDestino($destino);
-            $mensaje->setUsuario($usuario);
             $mensaje->setContenido($contenido);
 
-            $mensaje->modificarMensaje();
+            $mensaje->modificarMensaje($idMensaje);
 
             $response->getBody()->write( json_encode($mensaje) );
 
@@ -58,9 +58,9 @@
 
         public function BorrarMensaje($request, $response, $args){
 
-            $destino = $args['destino'];
+            $idMensaje = $args['idMensaje'];
 
-            Mensaje::borrarMensaje($destino);
+            Mensaje::borrarMensaje($idMensaje);
 
             $response->getBody()->write("borrado");
    

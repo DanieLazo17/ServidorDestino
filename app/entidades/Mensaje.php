@@ -57,16 +57,16 @@
             $consulta->execute(array($this->destino, $this->usuario, $this->contenido));
         }
 
-        public function modificarMensaje(){
+        public function modificarMensaje($idMensaje){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
-            $consulta = $objAccesoDatos->prepararConsulta("UPDATE mensaje SET contenido = ? WHERE destino = ? AND usuario = ?");
-            $consulta->execute(array($this->contenido, $this->destino, $this->usuario));
+            $consulta = $objAccesoDatos->prepararConsulta("UPDATE mensaje SET contenido = ?, destino = ? WHERE idMensaje = ?");
+            $consulta->execute(array($this->contenido, $this->destino, $idMensaje));
         }
-        //Modificar métodos estáticos y revisar campo destino en base de datos
-        public static function borrarMensaje($destino){
+        //Modificar métodos estáticos
+        public static function borrarMensaje($idMensaje){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
-            $consulta = $objAccesoDatos->prepararConsulta("DELETE FROM mensaje WHERE destino = ?");
-            $consulta->execute(array($destino));
+            $consulta = $objAccesoDatos->prepararConsulta("DELETE FROM mensaje WHERE idMensaje = ?");
+            $consulta->execute(array($idMensaje));
         }
 
         public static function obtenerMensajes(){

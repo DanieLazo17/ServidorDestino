@@ -72,8 +72,8 @@
         $grupoMensaje->post('[/]', \MensajeControlador::class . ':CrearMensaje' );
         $grupoMensaje->get('/{idDestino}[/]', \MensajeControlador::class . ':RetornarMensajesDeDestino' );
         $grupoMensaje->get('[/]', \MensajeControlador::class . ':RetornarMensajes' );
-        $grupoMensaje->patch('[/]', \MensajeControlador::class . ':ActualizarMensaje' );
-        $grupoMensaje->delete('/Borrar/{destino}', \MensajeControlador::class . ':BorrarMensaje' );
+        $grupoMensaje->patch('/{idMensaje}[/]', \MensajeControlador::class . ':ActualizarMensaje' );
+        $grupoMensaje->delete('/Borrar/{idMensaje}', \MensajeControlador::class . ':BorrarMensaje' );
     });
 
     $app->post('/hello/{name}', function (Request $request, Response $response, array $args) {
