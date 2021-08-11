@@ -6,10 +6,10 @@
         private $tipoTurismo;
         private $pais;
         private $provincia;
-        private $tipoAlojamiento;
-        private $tipoComida;
+        private $alojamiento;
+        private $comida;
         private $comunidad;
-        private $imagenPath;
+        private $imagenpath;
 
         public function __construct(){
             
@@ -40,6 +40,26 @@
             $this->provincia = $provincia;
         }
 
+        public function setAlojamiento($alojamiento){
+            
+            $this->alojamiento = $alojamiento;
+        }
+
+        public function setComida($comida){
+            
+            $this->comida = $comida;
+        }
+
+        public function setComunidad($comunidad){
+            
+            $this->comunidad = $comunidad;
+        }
+
+        public function setImagenpath($imagenpath){
+            
+            $this->imagenpath = $imagenpath;
+        }
+
         public function getNombre(){
             
             return $this->nombre;
@@ -63,6 +83,26 @@
         public function getProvincia(){
             
             return $this->provincia;
+        }
+
+        public function getAlojamiento(){
+            
+            return $this->alojamiento;
+        }
+
+        public function getComida(){
+            
+            return $this->comida;
+        }
+
+        public function getComunidad(){
+            
+            return $this->comunidad;
+        }
+
+        public function getImagenpath(){
+            
+            return $this->imagenpath;
         }
 
         public function guardarDestino(){
