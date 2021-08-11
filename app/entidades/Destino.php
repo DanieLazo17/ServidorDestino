@@ -115,7 +115,8 @@
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM destino");
             $consulta->execute();
-            $arregloDeDestinosEncapsulados = $consulta->fetchAll(PDO::FETCH_CLASS, 'Destino');
+            //$arregloDeDestinosEncapsulados = $consulta->fetchAll(PDO::FETCH_CLASS, 'Destino');
+            $arregloDeDestinosEncapsulados = $consulta->fetchAll();
 
             $arregloDeDestinos = array();
             $es = "set";
