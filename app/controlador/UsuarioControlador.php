@@ -14,50 +14,52 @@
         public function ValidarUsuario($request, $response, $args){  
             $listaDeParametros = $request->getParsedBody();
 
-            $arregloUsuario = Usuario::obtenerUsuario($listaDeParametros['nombre']);
+            /*$objetoUsuario = Usuario::obtenerUsuario($listaDeParametros['nombre']);*/
+            $arregloDeUsuario = Usuario::obtenerUsuario($listaDeParametros['nombre']);
 
-            if(!$arregloUsuario){
+            if(!$arregloDeUsuario){
                 $response->getBody()->write("No existe usuario");
                 return $response;
             }
 
-            $usuarioDB = new Usuario();
+            $objetoUsuario = new Usuario();
             $es = "set";
 
-            foreach ($arregloUsuario as $atr => $valueAtr) {
+            foreach ($arregloDeUsuario as $atr => $valueAtr) {
                         
                 $es = $es . ucfirst($atr);
-                $usuarioDB->{$es}($valueAtr);
+                $objetoUsuario->{$es}($valueAtr);
                 $es = "set";
                         
             }
     
-            if($usuarioDB->compararContrasena($listaDeParametros['contrasena'])){
+            if($objetoUsuario->compararContrasena($listaDeParametros['contrasena'])){
                 $response->getBody()->write("Acceso correcto");
             }
             else{
                 $response->getBody()->write("Contraseña incorrecta");
             }
+
             /*
-            if( count($arregloUsuario) == 1 ){
+            if( count($arregloDeUsuario) == 1 ){
                 
-                $usuarioDB = new Usuario();
+                $objetoUsuario = new Usuario();
                 $es = "set";
 
-                foreach($arregloUsuario as $objetoUsuario){
+                foreach($arregloDeUsuario as $objetoDeTipoUsuario){
 
-                    foreach ($objetoUsuario as $atr => $valueAtr) {
+                    foreach ($objetoDeTipoUsuario as $atr => $valueAtr) {
 
-                        //$usuarioDB->{$atr} = $valueAtr;
+                        //$objetoUsuario->{$atr} = $valueAtr;
                         
                         $es = $es . ucfirst($atr);
-                        $usuarioDB->{$es}($valueAtr);
+                        $objetoUsuario->{$es}($valueAtr);
                         $es = "set";
                         
                     }
                 }
 
-                if($usuarioDB->compararContrasena($listaDeParametros['contrasena'])){
+                if($objetoUsuario->compararContrasena($listaDeParametros['contrasena'])){
                     
                     $response->getBody()->write("perfil.php");
                 }
