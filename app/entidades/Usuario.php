@@ -35,8 +35,9 @@
             $consulta->execute(array($nombre));
             //$consulta->setFetchMode(PDO::FETCH_CLASS, 'Usuario');
     
-            //return $consulta->fetchAll(PDO::FETCH_CLASS, 'Usuario');
             return $consulta->fetch(PDO::FETCH_ASSOC);
+            /*return $consulta->fetchAll(PDO::FETCH_CLASS, 'Usuario');*/
+            /*return $consulta->fetch();*/
         }
 
         public static function obtenerNombresDeUsuarios(){
