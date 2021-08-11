@@ -25,16 +25,15 @@
             if(!$arregloUsuario){
                 $response->getBody()->write("No existe usuario");
                 return $response;
-                die();
             }
     
             //var_dump($arregloUsuario);
     
             if($arregloUsuario->compararContrasena($listaDeParametros['contrasena'])){
-                echo "Acceso correcto";
+                $response->getBody()->write("Acceso correcto");
             }
             else{
-                echo "Contraseña incorrecta";
+                $response->getBody()->write("Contraseña incorrecta");
             }
             /*
             if( count($arregloUsuario) == 1 ){
