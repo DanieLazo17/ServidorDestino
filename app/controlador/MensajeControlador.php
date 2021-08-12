@@ -39,7 +39,7 @@
         }
 
         public function ActualizarMensaje($request, $response, $args){
-            $listaDeParametros = $request->getBody();
+            $listaDeParametros = $request->getParsedBody();
             $idMensaje = $args['idMensaje'];
 
             $destino = $listaDeParametros['destino'];
