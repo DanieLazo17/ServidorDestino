@@ -81,7 +81,7 @@
         public static function obtenerMensajesDeDestino($idDestino){
 
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
-            $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM mensaje WHERE destino = ?");
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT m.idMensaje, d.nombre AS nombreDeDestino, u.nombre AS nombreDeUsuario, m.contenido FROM mensaje AS m, usuario AS u, destino AS d WHERE m.destino = d.idDestino AND m.usuario = u.idUsuario AND destino = ?");
             $consulta->execute(array($idDestino));
     
             /*return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mensaje');*/
