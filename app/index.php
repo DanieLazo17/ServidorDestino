@@ -70,7 +70,7 @@
     //Mensaje
     $app->group('/Mensaje', function (RouteCollectorProxy $grupoMensaje) {
         $grupoMensaje->post('[/]', \MensajeControlador::class . ':CrearMensaje' );
-        $grupoMensaje->get('/:idDestino[/]', \MensajeControlador::class . ':RetornarMensajesDeDestino' );
+        $grupoMensaje->get('/{idDestino}[/]', \MensajeControlador::class . ':RetornarMensajesDeDestino' );
         $grupoMensaje->get('[/]', \MensajeControlador::class . ':RetornarMensajes' );
         //Revisar método patch() o put()
         $grupoMensaje->put('/{idMensaje}[/]', \MensajeControlador::class . ':ActualizarMensaje' );
