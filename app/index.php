@@ -38,7 +38,7 @@
         $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
     
         $response = $response->withHeader('Access-Control-Allow-Origin', '*');
-        $response = $response->withHeader('Access-Control-Allow-Methods', 'get,post,patch');
+        $response = $response->withHeader('Access-Control-Allow-Methods', 'get,post,put');
         $response = $response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
     
         // Optional: Allow Ajax CORS requests with Authorization header
