@@ -73,7 +73,7 @@
         $grupoMensaje->get('/{idDestino}[/]', \MensajeControlador::class . ':RetornarMensajesDeDestino' );
         $grupoMensaje->get('[/]', \MensajeControlador::class . ':RetornarMensajes' );
         //Revisar método patch() o put()
-        $grupoMensaje->put('/{idMensaje}[/]', \MensajeControlador::class . ':ActualizarMensaje' );
+        $grupoMensaje->post('/{idMensaje}[/]', \MensajeControlador::class . ':ActualizarMensaje' );
         $grupoMensaje->delete('/Borrar/{idMensaje}', \MensajeControlador::class . ':BorrarMensaje' );
     });
 
