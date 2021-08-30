@@ -73,9 +73,10 @@
             */
             return $response;
         }
-
+        
+        //Comprobar si existe nombre de usuario en la misma base de datos
         public function BuscarNombreDeUsuario($request, $response, $args){
-
+            
             $arregloUsuarios = Usuario::obtenerNombresDeUsuarios();
 
             $listaDeParametros = $request->getParsedBody();
