@@ -16,62 +16,31 @@
 
             /*$objetoUsuario = Usuario::obtenerUsuario($listaDeParametros['nombre']);*/
             $arregloDeUsuario = Usuario::obtenerUsuario($listaDeParametros['nombre']);
+            $UsuarioRegistrado = array("idUsuario"=>null, "nombre"=>null);
 
             if(!$arregloDeUsuario){
-                $response->getBody()->write("No existe usuario");
+                $response->getBody()->write(json_encode($UsuarioRegistrado));
                 return $response;
             }
 
             $objetoUsuario = new Usuario();
             $es = "set";
 
-            foreach ($arregloDeUsuario as $atr => $valueAtr) {
-                        
+            foreach ($arregloDeUsuario as $atr => $valueAtr) {               
                 $es = $es . ucfirst($atr);
                 $objetoUsuario->{$es}($valueAtr);
-                $es = "set";
-                        
+                $es = "set";        
             }
-    
+
             if($objetoUsuario->compararContrasena($listaDeParametros['contrasena'])){
-                $response->getBody()->write("Acceso correcto");
+                $UsuarioRegistrado = array("idUsuario"=>$arregloDeUsuario['idUsuario'], "nombre"=>$arregloDeUsuario['nombre']);
+                $response->getBody()->write(json_encode($UsuarioRegistrado));
             }
             else{
-                $response->getBody()->write("Contraseña incorrecta");
+                $response->getBody()->write(json_encode($UsuarioRegistrado));
             }
 
-            /*
-            if( count($arregloDeUsuario) == 1 ){
-                
-                $objetoUsuario = new Usuario();
-                $es = "set";
-
-                foreach($arregloDeUsuario as $objetoDeTipoUsuario){
-
-                    foreach ($objetoDeTipoUsuario as $atr => $valueAtr) {
-
-                        //$objetoUsuario->{$atr} = $valueAtr;
-                        
-                        $es = $es . ucfirst($atr);
-                        $objetoUsuario->{$es}($valueAtr);
-                        $es = "set";
-                        
-                    }
-                }
-
-                if($objetoUsuario->compararContrasena($listaDeParametros['contrasena'])){
-                    
-                    $response->getBody()->write("perfil.php");
-                }
-                else{
-                    $response->getBody()->write("Contraseña incorrecta");
-                }
-            }
-            else{
-                $response->getBody()->write("Usuario incorrecto");
-            }
-            */
-            return $response;
+            return $response->withHeader('Content-Type', 'application/json');
         }
         
         //Comprobar si existe nombre de usuario en la misma base de datos
