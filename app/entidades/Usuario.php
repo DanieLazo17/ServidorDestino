@@ -2,6 +2,7 @@
 
     class Usuario{
         
+        private $idUsuario;
         private $nombre;
         private $contrasena;
 
@@ -19,6 +20,11 @@
             $this->contrasena = $contrasena;
         }
 
+        function setIdUsuario($idUsuario){
+            
+            $this->idUsuario = $idUsuario;
+        }
+
         function getNombre(){
             
             return $this->nombre;
@@ -27,6 +33,11 @@
         function getContrasena(){
             
             return $this->contrasena;
+        }
+
+        function getIdUsuario(){
+            
+            return $this->idUsuario;
         }
 
         public static function obtenerUsuario($nombre){
