@@ -70,7 +70,7 @@
             $usuario = new Usuario();
             $usuario->setNombre($listaDeParametros['nuevoUsuario']);
             $usuario->setContrasena($hashDeContrasena);
-
+            $nuevoUsuario = array("nombre"=>$usuario->getNombre());
             //$usuario->guardarUsuario();
 
             if( isset($_FILES['nuevaFoto']) ){
@@ -81,7 +81,7 @@
                 move_uploaded_file($_FILES['nuevaFoto']['tmp_name'], $nombreFoto);
             }
 
-            $response->getBody()->write( json_encode($usuario) );
+            $response->getBody()->write( json_encode($nuevoUsuario) );
             return $response->withHeader('Content-Type', 'application/json');
             //$response->getBody()->write("Usuario generado correctamente");
             //return $response;
