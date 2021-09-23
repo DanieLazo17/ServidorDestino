@@ -82,8 +82,9 @@
             }
 
             $response->getBody()->write( json_encode($usuario) );
+            return $response->withHeader('Content-Type', 'application/json');
             //$response->getBody()->write("Usuario generado correctamente");
-            return $response;
+            //return $response;
         }
 
     }
