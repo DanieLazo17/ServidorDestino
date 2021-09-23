@@ -81,8 +81,8 @@
                 move_uploaded_file($_FILES['nuevaFoto']['tmp_name'], $nombreFoto);
             }
 
-            //$response->getBody()->write( json_encode($usuario) );
-            $response->getBody()->write("Usuario generado correctamente");
+            $response->getBody()->write( json_encode($usuario) );
+            //$response->getBody()->write("Usuario generado correctamente");
             return $response;
         }
 
