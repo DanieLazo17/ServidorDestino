@@ -6,7 +6,6 @@
         private $usuario;
         private $contenido;
 
-
         public function __construct(){
             
         }
@@ -57,16 +56,34 @@
             $consulta->execute(array($this->destino, $this->usuario, $this->contenido));
         }
 
-        public function modificarMensaje($idMensaje){
+        public function modificarMensaje(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("UPDATE mensaje SET contenido = ?, destino = ? WHERE idMensaje = ?");
-            $consulta->execute(array($this->contenido, $this->destino, $idMensaje));
+            $consulta->execute(array($this->contenido, $this->destino, $this->idMensaje));
         }
-        //Modificar métodos estáticos
-        public static function borrarMensaje($idMensaje){
+        
+        public function borrarMensaje(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("DELETE FROM mensaje WHERE idMensaje = ?");
-            $consulta->execute(array($idMensaje));
+            $consulta->execute(array($this->idMensaje));
+        }
+
+        public function obtenerMensajesDeDestino(){
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT m.idMensaje, d.nombre AS nombreDeDestino, u.nombre AS nombreDeUsuario, m.contenido FROM mensaje AS m, usuario AS u, destino AS d WHERE m.destino = d.idDestino AND m.usuario = u.idUsuario AND m.destino = ?");
+            $consulta->execute(array($this->destino));
+    
+            /*return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mensaje');*/
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function obtenerMensajesDeUsuario(){
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT m.idMensaje, d.nombre AS nombreDeDestino, u.nombre AS nombreDeUsuario, m.contenido FROM mensaje AS m, usuario AS u, destino AS d WHERE m.destino = d.idDestino AND m.usuario = u.idUsuario AND m.usuario = ?");
+            $consulta->execute(array($this->usuario));
+    
+            /*return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mensaje');*/
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public static function obtenerMensajes(){
@@ -77,16 +94,5 @@
             /*return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mensaje');*/
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
-
-        public static function obtenerMensajesDeDestino($idDestino){
-
-            $objAccesoDatos = AccesoDatos::obtenerInstancia();
-            $consulta = $objAccesoDatos->prepararConsulta("SELECT m.idMensaje, d.nombre AS nombreDeDestino, u.nombre AS nombreDeUsuario, m.contenido FROM mensaje AS m, usuario AS u, destino AS d WHERE m.destino = d.idDestino AND m.usuario = u.idUsuario AND destino = ?");
-            $consulta->execute(array($idDestino));
-    
-            /*return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mensaje');*/
-            return $consulta->fetchAll(PDO::FETCH_ASSOC);
-        }
-        
     }
 ?>

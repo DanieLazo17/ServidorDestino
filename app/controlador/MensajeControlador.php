@@ -21,17 +21,17 @@
         }
 
         public function RetornarMensajesDeDestino($request, $response, $args){
-
             $idDestino = $args['idDestino'];
 
-            $arrayMensajes = Mensaje::obtenerMensajesDeDestino($idDestino);
+            $ObjetoMensaje = new Mensaje();
+            $ObjetoMensaje->setDestino($idDestino);
+            $arrayMensajes = $ObjetoMensaje->obtenerMensajesDeDestino();
             $response->getBody()->write(json_encode($arrayMensajes));
    
             return $response->withHeader('Content-Type', 'application/json');
         }
 
         public function RetornarMensajes($request, $response, $args){
-
             $arrayMensajes = Mensaje::obtenerMensajes();
             $response->getBody()->write(json_encode($arrayMensajes));
    
@@ -46,27 +46,36 @@
             $contenido = $listaDeParametros['contenido'];
 
             $mensaje = new Mensaje();
+            $mensaje->setIdMensaje($idMensaje);
             $mensaje->setDestino($destino);
             $mensaje->setContenido($contenido);
-
-            $mensaje->modificarMensaje($idMensaje);
+            $mensaje->modificarMensaje();
 
             $response->getBody()->write( json_encode($mensaje) );
-
             return $response;
         }
 
         public function BorrarMensaje($request, $response, $args){
-
             $idMensaje = $args['idMensaje'];
 
-            Mensaje::borrarMensaje($idMensaje);
+            $ObjetoMensaje = new Mensaje();
+            $ObjetoMensaje->setIdMensaje($idMensaje);
+            $ObjetoMensaje->borrarMensaje();
 
             $response->getBody()->write("borrado");
-   
             return $response;
         }
         
+        public function RetornarMensajesDeUsuario($request, $response, $args){
+            $idUsuario = $args['idUsuario'];
+
+            $ObjetoMensaje = new Mensaje();
+            $ObjetoMensaje->setUsuario($idUsuario);
+            $arrayMensajes = $ObjetoMensaje->obtenerMensajesDeUsuario();
+            $response->getBody()->write(json_encode($arrayMensajes));
+   
+            return $response->withHeader('Content-Type', 'application/json');
+        }
     }
 
 ?>
