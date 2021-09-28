@@ -111,7 +111,7 @@
             $consulta->execute(array($this->nombre, $this->tipoTurismo, $this->pais, $this->provincia));
         }
 
-        public static function obtenerDestino(){
+        public function obtenerDestino(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM destino WHERE idDestino = ?");
             $consulta->execute(array($this->idDestino));
