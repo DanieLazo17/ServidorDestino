@@ -52,13 +52,12 @@
         return $response;
     });
 
-    //Registro
-    $app->post('[/]', \UsuarioControlador::class . ":ValidarUsuario");
-
-    //Registración
-    $app->group("/Registro", function (RouteCollectorProxy $grupoRegistro) {
-        $grupoRegistro->post("[/]", \UsuarioControlador::class . ':BuscarNombreDeUsuario' );
-        $grupoRegistro->post('/UsuarioNuevo[/]', \UsuarioControlador::class . ':CrearUsuario' );
+    //Usuario
+    $app->group("/Usuario", function (RouteCollectorProxy $grupoUsuario) {
+        $grupoUsuario->post("[/]", \UsuarioControlador::class . ':ValidarUsuario' );
+        $grupoUsuario->post("/Verificacion[/]", \UsuarioControlador::class . ':RetornarUsuario' );
+        $grupoUsuario->post("/Nuevo[/]", \UsuarioControlador::class . ':BuscarNombreDeUsuario' );
+        $grupoUsuario->post('/Registro[/]', \UsuarioControlador::class . ':CrearUsuario' );
     });
     
     //Destino

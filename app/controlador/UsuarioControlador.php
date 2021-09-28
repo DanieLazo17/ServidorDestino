@@ -87,6 +87,21 @@
             //return $response;
         }
 
+        public function RetornarUsuario($request, $response, $args){
+            $listaDeParametros = $request->getParsedBody();
+
+            $arregloDeUsuario = Usuario::obtenerUsuario($listaDeParametros['nombre']);
+            $UsuarioRegistrado = array("idUsuario"=>null, "nombre"=>null);
+
+            if(!$arregloDeUsuario){
+                $response->getBody()->write(json_encode($UsuarioRegistrado));
+                return $response;
+            }
+
+            $UsuarioRegistrado = array("idUsuario"=>$arregloDeUsuario['idUsuario'], "nombre"=>$arregloDeUsuario['nombre']);
+            $response->getBody()->write(json_encode($UsuarioRegistrado));
+            return $response->withHeader('Content-Type', 'application/json');
+        }
     }
 
 ?>
