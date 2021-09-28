@@ -34,6 +34,16 @@
             return $response->withHeader('Content-Type', 'application/json');
         }
 
+        public function RetornarDestino($request, $response, $args){
+            $idDestino = $args['idDestino'];
+
+            $Destino = new Destino();
+            $Destino->setIdDestino($idDestino);
+            $arregloDeDestino =$Destino->obtenerDestino();
+            $response->getBody()->write(json_encode($arregloDeDestino));
+   
+            return $response->withHeader('Content-Type', 'application/json');
+        }
     }
 
 ?>

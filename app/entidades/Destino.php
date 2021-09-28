@@ -111,6 +111,13 @@
             $consulta->execute(array($this->nombre, $this->tipoTurismo, $this->pais, $this->provincia));
         }
 
+        public static function obtenerDestino(){
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM destino WHERE idDestino = ?");
+            $consulta->execute(array($this->idDestino));
+            return $consulta->fetch(PDO::FETCH_ASSOC);
+        }
+
         public static function obtenerDestinos(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM destino");

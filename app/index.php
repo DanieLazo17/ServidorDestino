@@ -64,6 +64,7 @@
     $app->group('/Destino', function (RouteCollectorProxy $grupoDestino) {
         $grupoDestino->post('/Nuevo[/]', \DestinoControlador::class . ':CrearDestino' );
         $grupoDestino->get('[/]', \DestinoControlador::class . ':RetornarDestinos' );
+        $grupoDestino->get('/{idDestino}[/]', \DestinoControlador::class . ':RetornarDestino' );
     });
 
     //Mensaje
