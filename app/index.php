@@ -74,7 +74,7 @@
         $grupoMensaje->get('/Usuario/{idUsuario}[/]', \MensajeControlador::class . ':RetornarMensajesDeUsuario' );
         $grupoMensaje->get('[/]', \MensajeControlador::class . ':RetornarMensajes' );
         //Revisar método patch() o put()
-        $grupoMensaje->put('/{idMensaje}[/]', \MensajeControlador::class . ':ActualizarMensaje' );
+        $grupoMensaje->post('/{idMensaje}[/]', \MensajeControlador::class . ':ActualizarMensaje' );
         $grupoMensaje->delete('/Borrar/{idMensaje}', \MensajeControlador::class . ':BorrarMensaje' );
     });
 
