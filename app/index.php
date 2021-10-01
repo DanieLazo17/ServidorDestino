@@ -65,6 +65,7 @@
         $grupoDestino->post('/Nuevo[/]', \DestinoControlador::class . ':CrearDestino' );
         $grupoDestino->get('[/]', \DestinoControlador::class . ':RetornarDestinos' );
         $grupoDestino->get('/{idDestino}[/]', \DestinoControlador::class . ':RetornarDestino' );
+        $grupoDestino->post('/Nombre[/]', \DestinoControlador::class . ':BuscarDestinoPorNombre' );
     });
 
     //Mensaje

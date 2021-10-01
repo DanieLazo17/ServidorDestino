@@ -27,7 +27,6 @@
         }
 
         public function RetornarDestinos($request, $response, $args){
-
             $arregloDeDestinos = Destino::obtenerDestinos();
             $response->getBody()->write(json_encode($arregloDeDestinos));
    
@@ -40,6 +39,15 @@
             $Destino = new Destino();
             $Destino->setIdDestino($idDestino);
             $arregloDeDestino =$Destino->obtenerDestino();
+            $response->getBody()->write(json_encode($arregloDeDestino));
+   
+            return $response->withHeader('Content-Type', 'application/json');
+        }
+
+        public function BuscarDestinoPorNombre($request, $response, $args){
+            $listaDeParametros = $request->getParsedBody();
+            $nombre = $listaDeParametros['nombre'];
+            $arregloDeDestino = Destino::obtenerDestinoPorNombre($nombre);
             $response->getBody()->write(json_encode($arregloDeDestino));
    
             return $response->withHeader('Content-Type', 'application/json');
