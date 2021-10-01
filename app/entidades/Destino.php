@@ -146,7 +146,7 @@
         public static function obtenerDestinoPorNombre($nombre){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM destino WHERE nombre LIKE ?");
-            $nombre = $nombre."%";
+            $nombre = "%".$nombre."%";
             $consulta->execute(array($nombre));
 
             return $consulta->fetch(PDO::FETCH_ASSOC);
