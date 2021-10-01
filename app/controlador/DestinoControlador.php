@@ -48,12 +48,12 @@
             $listaDeParametros = $request->getParsedBody();
             $nombre = $listaDeParametros['nombre'];
             $arregloDeDestino = Destino::obtenerDestinoPorNombre($nombre);
-            
+
             if(!$arregloDeDestino){
                 $arregloDeDestino = array("idUsuario"=>null, "nombre"=>null);
             }
+            
             $response->getBody()->write(json_encode($arregloDeDestino));
-   
             return $response->withHeader('Content-Type', 'application/json');
         }
     }
