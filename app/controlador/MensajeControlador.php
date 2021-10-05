@@ -4,8 +4,8 @@
 
         public function CrearMensaje($request, $response, $args){
             $listaDeParametros = $request->getParsedBody();
-            $destino = $listaDeParametros['destino'];
-            $usuario = $listaDeParametros['usuario'];
+            $destino = (int)$listaDeParametros['destino'];
+            $usuario = (int)$listaDeParametros['usuario'];
             $contenido = $listaDeParametros['contenido'];
 
             $mensaje = new Mensaje();
