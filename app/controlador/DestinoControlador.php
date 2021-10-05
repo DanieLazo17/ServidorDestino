@@ -15,14 +15,20 @@
             $pais = ucwords($pais);
             $provincia = ucwords($provincia);
 
+            $UltimoId = Socio::obtenerUltimoIdDestino();
+            $UltimoId['idDestino'] += 1;
+
             $destino = new Destino();
+            $destino->setIdDestino($UltimoId['idDestino']);
             $destino->setNombre($nombre);
             $destino->setTipoTurismo($tipoTurismo);
             $destino->setPais($pais);
             $destino->setProvincia($provincia);
             $destino->guardarDestino();
 
-            $response->getBody()->write( json_encode($destino) );
+            $DestinoNuevo = array("idDestino"=>$UltimoId['idDestino']);
+
+            $response->getBody()->write( json_encode($DestinoNuevo) );
             return $response;
         }
 

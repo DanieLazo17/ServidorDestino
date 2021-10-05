@@ -151,5 +151,13 @@
 
             return $consulta->fetch(PDO::FETCH_ASSOC);
         }
+
+        public static function obtenerUltimoIdDestino(){
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT MAX(idDestino) AS idDestino FROM destino");
+            $consulta->execute();
+
+            return $consulta->fetch(PDO::FETCH_ASSOC);
+        }
     }
 ?>
