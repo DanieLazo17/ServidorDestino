@@ -15,7 +15,7 @@
             $pais = ucwords($pais);
             $provincia = ucwords($provincia);
 
-            $UltimoId = Socio::obtenerUltimoIdDestino();
+            $UltimoId = Destino::obtenerUltimoIdDestino();
             $UltimoId['idDestino'] += 1;
 
             $destino = new Destino();
