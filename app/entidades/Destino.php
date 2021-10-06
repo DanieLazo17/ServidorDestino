@@ -165,7 +165,7 @@
             $consulta = $objAccesoDatos->prepararConsulta("SELECT d.idDestino, d.nombre, COUNT(m.destino) AS cantidadDeMensajes FROM destino AS d, mensaje AS m GROUP BY m.destino ORDER BY cantidadDeMensajes");
             $consulta->execute();
 
-            return $consulta->fetch(PDO::FETCH_ASSOC);
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 ?>
