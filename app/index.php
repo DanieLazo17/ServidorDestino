@@ -65,7 +65,7 @@
         $grupoDestino->get('[/]', \DestinoControlador::class . ':RetornarDestinos' );
         $grupoDestino->get('/{idDestino}[/]', \DestinoControlador::class . ':RetornarDestino' );
         $grupoDestino->post('/Nombre[/]', \DestinoControlador::class . ':BuscarDestinoPorNombre' );
-        $grupoDestino->get('/Orden[/]', \DestinoControlador::class . ':RetornarDestinosOrdenados' );
+        $grupoDestino->get('/Orden[/]', \DestinoControlador::class . ':TraerDestinosOrdenados' );
     });
 
     //Mensaje

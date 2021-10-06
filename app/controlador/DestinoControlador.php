@@ -63,7 +63,7 @@
             return $response->withHeader('Content-Type', 'application/json');
         }
 
-        public function RetornarDestinosOrdenados($request, $response, $args){
+        public function TraerDestinosOrdenados($request, $response, $args){
             $arregloDeDestinos = Destino::obtenerDestinosOrdenados();
             $response->getBody()->write(json_encode($arregloDeDestinos));
    
