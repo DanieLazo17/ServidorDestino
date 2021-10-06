@@ -62,5 +62,12 @@
             $response->getBody()->write(json_encode($arregloDeDestino));
             return $response->withHeader('Content-Type', 'application/json');
         }
+
+        public function RetornarDestinosOrdenados($request, $response, $args){
+            $arregloDeDestinos = Destino::obtenerDestinosOrdenados();
+            $response->getBody()->write(json_encode($arregloDeDestinos));
+   
+            return $response->withHeader('Content-Type', 'application/json');
+        }
     }
 ?>
