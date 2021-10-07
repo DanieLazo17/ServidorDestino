@@ -52,8 +52,8 @@
 
         public function guardarMensaje(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
-            $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO mensaje(destino, usuario, contenido) VALUES (?,?,?)");
-            $consulta->execute(array($this->destino, $this->usuario, $this->contenido));
+            $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO mensaje(idMensaje, destino, usuario, contenido) VALUES (?,?,?,?)");
+            $consulta->execute(array($this->idMensaje, $this->destino, $this->usuario, $this->contenido));
         }
 
         public function modificarMensaje(){
@@ -93,6 +93,14 @@
     
             /*return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mensaje');*/
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public static function obtenerUltimoIdMensaje(){
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT MAX(idMensaje) AS idMensaje FROM mensaje");
+            $consulta->execute();
+
+            return $consulta->fetch(PDO::FETCH_ASSOC);
         }
     }
 ?>

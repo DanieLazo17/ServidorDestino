@@ -8,15 +8,18 @@
             $usuario = (int)$listaDeParametros['usuario'];
             $contenido = $listaDeParametros['contenido'];
 
+            $UltimoId = Mensaje::obtenerUltimoIdMensaje();
+            $UltimoId['idMensaje'] += 1;
+
             $mensaje = new Mensaje();
+            $mensaje->setIdMensaje($UltimoId['idMensaje']);
             $mensaje->setDestino($destino);
             $mensaje->setUsuario($usuario);
             $mensaje->setContenido($contenido);
-
             $mensaje->guardarMensaje();
+            $mensajeNuevo = array("idMensaje"=>$UltimoId['idMensaje'], "destino"=>$destino, "usuario"=>$usuario, "contenido"=>$contenido);
 
-            $response->getBody()->write( json_encode($mensaje) );
-
+            $response->getBody()->write( json_encode($mensajeNuevo) );
             return $response;
         }
 
