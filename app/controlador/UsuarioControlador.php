@@ -71,7 +71,7 @@
             $usuario->setNombre($listaDeParametros['nuevoUsuario']);
             $usuario->setContrasena($hashDeContrasena);
             $nuevoUsuario = array("nombre"=>$usuario->getNombre());
-            //$usuario->guardarUsuario();
+            $usuario->guardarUsuario();
 
             if( isset($_FILES['nuevaFoto']) ){
 
