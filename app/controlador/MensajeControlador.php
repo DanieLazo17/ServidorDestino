@@ -7,6 +7,7 @@
             $destino = (int)$listaDeParametros['destino'];
             $usuario = (int)$listaDeParametros['usuario'];
             $contenido = $listaDeParametros['contenido'];
+            $fecha = $listaDeParametros['fecha'];
 
             $UltimoId = Mensaje::obtenerUltimoIdMensaje();
             $UltimoId['idMensaje'] += 1;
@@ -16,6 +17,7 @@
             $mensaje->setDestino($destino);
             $mensaje->setUsuario($usuario);
             $mensaje->setContenido($contenido);
+            $mensaje->setFecha($fecha);
             $mensaje->guardarMensaje();
             $mensajeNuevo = array("idMensaje"=>$UltimoId['idMensaje'], "destino"=>$destino, "usuario"=>$usuario, "contenido"=>$contenido);
 

@@ -5,6 +5,7 @@
         private $destino;
         private $usuario;
         private $contenido;
+        private $fecha;
 
         public function __construct(){
             
@@ -30,6 +31,11 @@
             $this->contenido = $contenido;
         }
 
+        public function setFecha($fecha){
+            
+            $this->fecha = $fecha;
+        }
+
         public function getIdMensaje(){
             
             return $this->idMensaje;
@@ -50,10 +56,15 @@
             return $this->contenido;
         }
 
+        public function getFecha(){
+            
+            return $this->fecha;
+        }
+
         public function guardarMensaje(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
-            $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO mensaje(idMensaje, destino, usuario, contenido) VALUES (?,?,?,?)");
-            $consulta->execute(array($this->idMensaje, $this->destino, $this->usuario, $this->contenido));
+            $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO mensaje(idMensaje, destino, usuario, contenido, fecha) VALUES (?,?,?,?,?)");
+            $consulta->execute(array($this->idMensaje, $this->destino, $this->usuario, $this->contenido, $this->fecha));
         }
 
         public function modificarMensaje(){
@@ -70,7 +81,7 @@
 
         public function obtenerMensajesDeDestino(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
-            $consulta = $objAccesoDatos->prepararConsulta("SELECT m.idMensaje, d.nombre AS destino, u.nombre AS usuario, m.contenido FROM mensaje AS m, usuario AS u, destino AS d WHERE m.destino = d.idDestino AND m.usuario = u.idUsuario AND m.destino = ?");
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT m.idMensaje, d.nombre AS destino, u.nombre AS usuario, m.contenido, fecha FROM mensaje AS m, usuario AS u, destino AS d WHERE m.destino = d.idDestino AND m.usuario = u.idUsuario AND m.destino = ?");
             $consulta->execute(array($this->destino));
     
             /*return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mensaje');*/
@@ -79,7 +90,7 @@
 
         public function obtenerMensajesDeUsuario(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
-            $consulta = $objAccesoDatos->prepararConsulta("SELECT m.idMensaje, m.destino, m.usuario, m.contenido FROM mensaje AS m, usuario AS u, destino AS d WHERE m.destino = d.idDestino AND m.usuario = u.idUsuario AND m.usuario = ?");
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT m.idMensaje, m.destino, m.usuario, m.contenido, m.fecha FROM mensaje AS m, usuario AS u, destino AS d WHERE m.destino = d.idDestino AND m.usuario = u.idUsuario AND m.usuario = ?");
             $consulta->execute(array($this->usuario));
     
             /*return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mensaje');*/
