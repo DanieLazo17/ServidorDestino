@@ -53,13 +53,15 @@
             $resultado = in_array($listaDeParametros['usuarioNuevo'], array_column($arregloUsuarios, 'nombre'));
 
             if($resultado){
-                $response->getBody()->write("Nombre de usuario duplicado");
+                $respuesta = ['estado' => true, 'mensaje' => 'Nombre de usuario duplicado'];
+                $response->getBody()->write( json_encode($respuesta) );
             }
             else{
-                $response->getBody()->write("Nombre de usuario correcto");
+                $respuesta = ['estado' => false, 'mensaje' => 'Nombre de usuario correcto'];
+                $response->getBody()->write( json_encode($respuesta) );
             }
 
-            return $response;
+            return $response->withHeader('Content-Type', 'application/json');
         }
 
         public function CrearUsuario($request, $response, $args){
