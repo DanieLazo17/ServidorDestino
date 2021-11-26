@@ -24,7 +24,6 @@
 
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer\PHPMailer\PHPMailer();
-        require 'correo.php';
 
         try {
             //Server settings
@@ -32,13 +31,13 @@
             $mail->isSMTP();                                            //Send using SMTP
             $mail->Host       = 'smtp.gmail.com';                       //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = $correo;                                //SMTP username
-            $mail->Password   = $contrasena;                            //SMTP password
+            $mail->Username   = getenv("Correo");                       //SMTP username
+            $mail->Password   = getenv("ClaveDeCorreo");                //SMTP password
             $mail->SMTPSecure = 'TLS';                                  //Enable implicit TLS encryption
             $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom($correo, $nombre);
+            $mail->setFrom(getenv("Correo"), getenv("NombreDeCorreo"));
             $mail->addAddress($destinatario);                           //Add a recipient
 
             //Content
