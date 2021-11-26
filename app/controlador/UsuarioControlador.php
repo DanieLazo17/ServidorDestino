@@ -125,10 +125,10 @@
             $mensaje = "Su clave nueva es: " . $contrasenaNueva;
         
             $respuesta = enviarCorreo($ObjUsuario->getCorreo(), $asunto, $mensaje);
-            
+            $ObjU = array("idUsuario"=>null, "clave"=>$contrasenaNueva);
             //$response->getBody()->write($respuesta);
             //return $response;
-            $response->getBody()->write(json_encode($objetoUsuario));
+            $response->getBody()->write(json_encode($ObjU));
             return $response->withHeader('Content-Type', 'application/json');
         }
     }
