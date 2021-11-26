@@ -126,8 +126,10 @@
         
             $respuesta = enviarCorreo($ObjUsuario->getCorreo(), $asunto, $mensaje);
             
-            $response->getBody()->write($respuesta);
-            return $response;
+            //$response->getBody()->write($respuesta);
+            //return $response;
+            $response->getBody()->write(json_encode($objetoUsuario));
+            return $response->withHeader('Content-Type', 'application/json');
         }
     }
 
