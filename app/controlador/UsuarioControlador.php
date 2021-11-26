@@ -70,6 +70,7 @@
             $hashDeContrasena = password_hash($listaDeParametros['nuevaContra'], PASSWORD_DEFAULT);
 
             $usuario = new Usuario();
+            $usuario->setCorreo($listaDeParametros['nuevoCorreo']);
             $usuario->setNombre($listaDeParametros['nuevoUsuario']);
             $usuario->setContrasena($hashDeContrasena);
             $nuevoUsuario = array("nombre"=>$usuario->getNombre());
