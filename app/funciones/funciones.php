@@ -24,6 +24,9 @@
 
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer\PHPMailer\PHPMailer();
+        $correo = getenv("Correo");
+        $contrasena = getenv("ClaveDeCorreo");
+        $nombre = getenv("NombreDeCorreo");
 
         try {
             //Server settings
@@ -31,13 +34,13 @@
             $mail->isSMTP();                                            //Send using SMTP
             $mail->Host       = 'smtp.gmail.com';                       //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = getenv("Correo");                       //SMTP username
-            $mail->Password   = getenv("ClaveDeCorreo");                //SMTP password
+            $mail->Username   = $correo;                       //SMTP username
+            $mail->Password   = $contrasena;                //SMTP password
             $mail->SMTPSecure = 'TLS';                                  //Enable implicit TLS encryption
             $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom(getenv("Correo"), getenv("NombreDeCorreo"));
+            $mail->setFrom($correo, $nombre);
             $mail->addAddress($destinatario);                           //Add a recipient
 
             //Content
