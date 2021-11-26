@@ -19,7 +19,7 @@
             $mensaje->setContenido($contenido);
             $mensaje->setFecha($fecha);
             $mensaje->guardarMensaje();
-            $mensajeNuevo = array("idMensaje"=>$UltimoId['idMensaje'], "destino"=>$destino, "usuario"=>$usuario, "contenido"=>$contenido);
+            $mensajeNuevo = array("idMensaje"=>$UltimoId['idMensaje'], "destino"=>$destino, "usuario"=>$usuario, "contenido"=>$contenido, "fecha"=>$fecha);
 
             $response->getBody()->write( json_encode($mensajeNuevo) );
             return $response;

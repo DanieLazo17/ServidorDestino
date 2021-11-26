@@ -3,11 +3,17 @@
     class Usuario{
         
         private $idUsuario;
+        private $correo;
         private $nombre;
         private $contrasena;
 
         function __construct(){
             
+        }
+
+        function setCorreo($correo){
+            
+            $this->correo = $correo;
         }
 
         function setNombre($nombre){
@@ -25,6 +31,11 @@
             $this->idUsuario = $idUsuario;
         }
 
+        function getCorreo(){
+            
+            return $this->correo;
+        }
+
         function getNombre(){
             
             return $this->nombre;
@@ -40,6 +51,24 @@
             return $this->idUsuario;
         }
 
+        public function guardarUsuario(){
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuario(correo, nombre, contrasena) VALUES (?,?,?)");
+            $consulta->execute(array($this->correo, $this->nombre, $this->contrasena));
+        }
+
+        public function compararContrasena($contrasenaIngresada){
+            
+            return password_verify($contrasenaIngresada, $this->getContrasena());
+        }
+
+        public function actualizarContrasena(){
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            $consulta = $objAccesoDatos->prepararConsulta("UPDATE usuario SET contrasena = ? WHERE idUsuario = ?");
+            
+            return $consulta->execute(array($this->contrasena, $this->idUsuario));
+        }
+
         public static function obtenerUsuario($nombre){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("SELECT idUsuario, nombre, contrasena FROM usuario WHERE nombre=?");
@@ -48,7 +77,6 @@
     
             /*return $consulta->fetch();*/
             return $consulta->fetch(PDO::FETCH_ASSOC);
-            /*return $consulta->fetchAll(PDO::FETCH_CLASS, 'Usuario');*/
         }
 
         public static function obtenerNombresDeUsuarios(){
@@ -59,15 +87,13 @@
             return $consulta->fetchAll();
         }
 
-        public function guardarUsuario(){
+        public static function buscarCorreo($correo){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
-            $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuario(nombre, contrasena) VALUES (?,?)");
-            $consulta->execute(array($this->nombre, $this->contrasena));
-        }
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT idUsuario, correo FROM usuario WHERE correo=?");
+            $consulta->execute(array($correo));
+            $consulta->setFetchMode(PDO::FETCH_CLASS, 'Usuario');
 
-        public function compararContrasena($contrasenaIngresada){
-            
-            return password_verify($contrasenaIngresada, $this->getContrasena());
+            return $consulta->fetch();
         }
     }
 

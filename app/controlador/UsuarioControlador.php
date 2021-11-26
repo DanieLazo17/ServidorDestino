@@ -102,6 +102,33 @@
             $response->getBody()->write(json_encode($UsuarioRegistrado));
             return $response->withHeader('Content-Type', 'application/json');
         }
+
+        public function RecuperarContrasena($request, $response, $args){
+            $listaDeParametros = $request->getParsedBody();
+            
+            $objetoUsuario = Usuario::buscarCorreo($listaDeParametros['correo']);
+
+            if(!$objetoUsuario){
+                $response->getBody()->write("No existe correo");
+                return $response;
+            }
+            
+            $contrasenaNueva = generarContrasenaAleatoria();
+            $hashDeContrasena = password_hash($contrasenaNueva, PASSWORD_DEFAULT);
+
+            $ObjUsuario = new Usuario();
+            $ObjUsuario->setIdUsuario($objetoUsuario->getIdUsuario());
+            $ObjUsuario->setCorreo($objetoUsuario->getCorreo());
+            $ObjUsuario->setContrasena($hashDeContrasena);
+            $ObjUsuario->actualizarContrasena();
+            $asunto = "Clave de Acceso";
+            $mensaje = "Su clave nueva es: " . $contrasenaNueva;
+        
+            $respuesta = enviarCorreo($ObjUsuario->getCorreo(), $asunto, $mensaje);
+            
+            $response->getBody()->write($respuesta);
+            return $response;
+        }
     }
 
 ?>
