@@ -9,7 +9,7 @@
         private $alojamiento;
         private $comida;
         private $comunidad;
-        private $imagenpath;
+        private $imagen;
 
         public function __construct(){
             
@@ -55,9 +55,9 @@
             $this->comunidad = $comunidad;
         }
 
-        public function setImagenpath($imagenpath){
+        public function setImagen($imagen){
             
-            $this->imagenpath = $imagenpath;
+            $this->imagen = $imagen;
         }
 
         public function getNombre(){
@@ -100,9 +100,9 @@
             return $this->comunidad;
         }
 
-        public function getImagenpath(){
+        public function getImagen(){
             
-            return $this->imagenpath;
+            return $this->imagen;
         }
 
         public function guardarDestino(){
@@ -162,7 +162,7 @@
 
         public static function obtenerDestinosOrdenados(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
-            $consulta = $objAccesoDatos->prepararConsulta("SELECT d.idDestino, d.nombre, d.tipoTurismo, d.pais, d.provincia, COUNT(m.destino) AS cantidadDeMensajes FROM destino AS d, mensaje AS m WHERE d.idDestino = m.destino GROUP BY m.destino HAVING COUNT(m.destino) >= 2 ORDER BY cantidadDeMensajes");
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT d.idDestino, d.nombre, d.tipoTurismo, d.pais, d.provincia, d.imagen, COUNT(m.destino) AS cantidadDeMensajes FROM destino AS d, mensaje AS m WHERE d.idDestino = m.destino GROUP BY m.destino HAVING COUNT(m.destino) >= 2 ORDER BY cantidadDeMensajes");
             $consulta->execute();
 
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
