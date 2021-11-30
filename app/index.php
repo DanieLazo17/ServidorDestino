@@ -80,7 +80,7 @@
         $grupoMensaje->get('[/]', \MensajeControlador::class . ':RetornarMensajes' );
         //Revisar método patch() o put()
         $grupoMensaje->post('/{idMensaje}[/]', \MensajeControlador::class . ':ActualizarMensaje' );
-        $grupoMensaje->delete('/Borrar/{idMensaje}', \MensajeControlador::class . ':BorrarMensaje' );
+        $grupoMensaje->get('/Borrar/{idMensaje}', \MensajeControlador::class . ':BorrarMensaje' );
     });
 
     $app->post('/hello/{name}', function (Request $request, Response $response, array $args) {
