@@ -66,9 +66,12 @@
             $ObjetoMensaje = new Mensaje();
             $ObjetoMensaje->setIdMensaje($idMensaje);
             $ObjetoMensaje->borrarMensaje();
+            $mensaje = array("mensaje"=>"Su destino fue borrado.");
 
-            $response->getBody()->write("borrado");
+            $response->getBody()->write( json_encode($mensaje) );
             return $response;
+            //$response->getBody()->write("borrado");
+            //return $response;
         }
         
         public function RetornarMensajesDeUsuario($request, $response, $args){
