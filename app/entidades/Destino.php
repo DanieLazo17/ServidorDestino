@@ -165,7 +165,7 @@
             $consulta = $objAccesoDatos->prepararConsulta("SELECT d.idDestino, d.nombre, d.tipoTurismo, d.pais, d.provincia, d.imagen, COUNT(m.destino) AS cantidadDeMensajes FROM destino AS d, mensaje AS m WHERE d.idDestino = m.destino GROUP BY m.destino ORDER BY cantidadDeMensajes");
             $consulta->execute();
 
-            return $consulta->fetch(PDO::FETCH_ASSOC);
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public static function obtenerDestinosPopulares(){
