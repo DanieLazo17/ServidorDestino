@@ -160,7 +160,7 @@
             return $consulta->fetch(PDO::FETCH_ASSOC);
         }
 
-        public static function obtenerDestinosOrdenados(){
+        public static function devolverDestinosOrdenados(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("SELECT d.idDestino, d.nombre, d.provincia, COUNT(m.destino) AS cantidadDeMensajes FROM destino AS d, mensaje AS m WHERE d.idDestino = m.destino GROUP BY m.destino ORDER BY cantidadDeMensajes");
             $consulta->execute();
@@ -170,7 +170,7 @@
 
         public static function obtenerDestinosPopulares(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
-            $consulta = $objAccesoDatos->prepararConsulta("SELECT d.idDestino, d.nombre, d.tipoTurismo, d.pais, d.provincia, d.imagen, COUNT(m.destino) AS cantidadDeMensajes FROM destino AS d, mensaje AS m WHERE d.idDestino = m.destino GROUP BY m.destino ORDER BY cantidadDeMensajes DESC LIMIT 5");
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT d.idDestino, d.nombre, d.tipoTurismo, d.pais, d.provincia, d.imagen, COUNT(m.destino) AS cantidadDeMensajes FROM destino AS d, mensaje AS m WHERE d.idDestino = m.destino GROUP BY m.destino ORDER BY cantidadDeMensajes DESC LIMIT 4");
             $consulta->execute();
 
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
