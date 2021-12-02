@@ -162,7 +162,7 @@
 
         public static function devolverDestinosOrdenados(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
-            $consulta = $objAccesoDatos->prepararConsulta("SELECT d.idDestino, d.nombre, d.provincia, COUNT(m.destino) AS cantidadDeMensajes FROM destino AS d, mensaje AS m WHERE d.idDestino = m.destino GROUP BY m.destino ORDER BY cantidadDeMensajes");
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT d.idDestino, d.nombre, d.tipoTurismo, d.pais, d.provincia, d.imagen, COUNT(m.destino) AS cantidadDeMensajes FROM destino AS d, mensaje AS m WHERE d.idDestino = m.destino GROUP BY m.destino ORDER BY cantidadDeMensajes");
             $consulta->execute();
 
             return $consulta->fetch(PDO::FETCH_ASSOC);
