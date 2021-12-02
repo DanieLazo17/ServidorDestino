@@ -69,5 +69,12 @@
    
             return $response->withHeader('Content-Type', 'application/json');
         }
+
+        public function TraerDestinosPopulares($request, $response, $args){
+            $arregloDeDestinos = Destino::obtenerDestinosPopulares();
+            $response->getBody()->write(json_encode($arregloDeDestinos));
+   
+            return $response->withHeader('Content-Type', 'application/json');
+        }
     }
 ?>

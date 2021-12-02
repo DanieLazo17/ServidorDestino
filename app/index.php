@@ -67,6 +67,7 @@
     $app->group('/Destino', function (RouteCollectorProxy $grupoDestino) {
         $grupoDestino->post('/Nuevo[/]', \DestinoControlador::class . ':CrearDestino' );
         $grupoDestino->get('/Orden[/]', \DestinoControlador::class . ':TraerDestinosOrdenados' );
+        $grupoDestino->get('/Popular[/]', \DestinoControlador::class . ':TraerDestinosPopulares' );
         $grupoDestino->get('[/]', \DestinoControlador::class . ':RetornarDestinos' );
         $grupoDestino->get('/{idDestino}[/]', \DestinoControlador::class . ':RetornarDestino' );
         $grupoDestino->post('/Nombre[/]', \DestinoControlador::class . ':BuscarDestinoPorNombre' );
